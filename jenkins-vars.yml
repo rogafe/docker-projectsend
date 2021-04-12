@@ -5,7 +5,7 @@ project_name: docker-projectsend
 external_type: na
 release_type: stable
 custom_version_command: |
-  curl -s https://www.projectsend.org/ | awk '/Download version/' | grep -Po 'r\d+\d+\d+\d+'
+  curl -s https://www.projectsend.org/ | awk -F '(Download version |<)' '/Download version/ {print $3}'
 release_tag: latest
 ls_branch: master
 repo_vars:

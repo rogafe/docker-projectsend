@@ -18,7 +18,7 @@ jobs:
           fi
           echo "**** External trigger running off of master branch. To disable this trigger, set a Github secret named \"PAUSE_EXTERNAL_TRIGGER_PROJECTSEND_MASTER\". ****"
           echo "**** Retrieving external version ****"
-          EXT_RELEASE=$(curl -s https://www.projectsend.org/ | awk '/Download version/' | grep -Po 'r\d+\d+\d+\d+'
+          EXT_RELEASE=$(curl -s https://www.projectsend.org/ | awk -F '(Download version |<)' '/Download version/ {print $3}'
 )
           if [ -z "${EXT_RELEASE}" ] || [ "${EXT_RELEASE}" == "null" ]; then
             echo "**** Can't retrieve external version, exiting ****"
