@@ -57,14 +57,13 @@ RUN \
  sed -i 's#PidFile "/run/.*#Pidfile "/var/run/apache2/httpd.pid"#g'  /etc/apache2/conf.d/mpm.conf && \
  echo "**** install projectsend ****" && \
  rm /var/www/localhost/htdocs/index.html && \
+ DL_URL=$(curl -s https://www.projectsend.org/ | awk -F '(href="|")' '/Download version/ {print $2}') && \
  curl -o \
  /tmp/ProjectSend.zip -L \
-	"https://www.projectsend.org/download/310/" && \
+	"${DL_URL}" && \
  unzip \
 	/tmp/ProjectSend.zip -d /var/www/localhost/htdocs/ && \
  mv /var/www/localhost/htdocs/upload /defaults/ && \
- mv /var/www/localhost/htdocs/img/custom /defaults/  && \
- #cp /var/www/localhost/htdocs/includes/sys.config.sample.php /defaults/sys.config.php && \
  echo "**** cleanup ****" && \
  rm -rf \
 	/tmp/*

@@ -106,7 +106,8 @@ pipeline {
       steps{
         script{
           env.EXT_RELEASE = sh(
-            script: ''' echo r1070 ''',
+            script: ''' curl -s https://www.projectsend.org/ | awk '/Download version/' | grep -Po 'r\d+\d+\d+\d+'
+ ''',
             returnStdout: true).trim()
             env.RELEASE_LINK = 'custom_command'
         }
