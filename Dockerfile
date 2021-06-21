@@ -59,19 +59,18 @@ RUN \
  rm /var/www/localhost/htdocs/index.html && \
  curl -o \
  /tmp/ProjectSend.zip -L \
-	"https://www.projectsend.org/download/310/" && \
+	"https://www.projectsend.org/download/387/" && \
  unzip \
 	/tmp/ProjectSend.zip -d /var/www/localhost/htdocs/ && \
  mv /var/www/localhost/htdocs/upload /defaults/ && \
- mv /var/www/localhost/htdocs/img/custom /defaults/  && \
  #cp /var/www/localhost/htdocs/includes/sys.config.sample.php /defaults/sys.config.php && \
  echo "**** cleanup ****" && \
  rm -rf \
 	/tmp/*
 
-# add local files
+# add local files
 COPY root/ /
 
-# ports and volumes
+# ports and volumes
 EXPOSE 80
 VOLUME /config /data
